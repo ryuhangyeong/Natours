@@ -1,5 +1,31 @@
 # Natours
 
+## 2020.12.22
+
+- 버튼에 잔상이 남는 효과 만들기, `css/style.css` `.btn-white` 참고하기
+- `animation-fill-mode: backwards;`
+- 브라우저가 HTML가 CSS를 읽는 단계
+
+  1. html를 로드합니다.
+  2. html을 파싱합니다.
+  3. 파싱하다가 중간에 <link>를 만나면 브라우저를 웹 서버에 css를 요청합니다.
+  4. 응답 받은 css를 읽습니다. CSS 파싱을 합니다.
+  5. 파싱 하면서 명시도 계산, 값 계산을 합니다. 이 결과 CSSOM이 만들어집니다.
+  6. CSS를 읽은 후 HTML을 마저 파싱합니다. HTML을 읽은 후 DOM Tree를 구성합니다.
+  7. 앞서 만든 DOM Tree와 CSSOM을 이용하여 Render Tree를 만듭니다.
+  8. 화면 배치 및 그립니다.
+
+- 명시도
+  다양한 선택자(selector)를 이용하여 CSS 속성을 설정하다보면 예상치 못하게 스타일이 적용되지 않을 때가 있습니다.
+  그때는 명시도가 낮음을 의심해봅시다.
+  CSS 선택자를 분석하여 명시도를 알아낼 수 있습니다. 명시도에 따라 선택되는 CSS 스타일이 다릅니다.
+  아래 설명에서 숫자가 낮을수록 명시도가 높습니다.
+  1. `!important`가 명시도가 가장 높습니다.
+  2. `inline style` 태그에 style을 직접 주는 경우 명시도가 높습니다.
+  3. id
+  4. class, pseudo-classes, attribute
+  5. elements, pseudo-elements
+
 ## 2020.12.21
 
 - `a tag`의 가상 선택자 `:link`와 `:visited`가 있다.
