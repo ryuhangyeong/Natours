@@ -1,0 +1,37 @@
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top; /* 해상도 변화시 기준점, top 영역은 유지된다.*/
+  /* 
+    사진 영역을 자른다. 다각형으로
+    시계 방향으로 4개의 점으로 생각하자.
+    왼쪽/위, 오른쪽위, 오른쪽아래, 왼쪽아래
+  */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  &__logo {
+    height: 3.5rem;
+    &-box {
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+    }
+  }
+
+  &__text {
+    &-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  }
+}
