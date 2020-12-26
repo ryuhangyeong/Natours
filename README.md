@@ -1,5 +1,132 @@
 # Natours
 
+## 2020.12.26
+
+- 그리드 시스템 만들어보기
+
+  ```html
+  <section class="grid-test">
+    <div class="row">
+      <div class="col-1-of-2">Col 1 of 2</div>
+      <div class="col-1-of-2">Col 1 of 2</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-3">Col 1 of 3</div>
+      <div class="col-1-of-3">Col 1 of 3</div>
+      <div class="col-1-of-3">Col 1 of 3</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-3">Col 1 of 3</div>
+      <div class="col-2-of-3">Col 2 of 3</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-1-of-4">Col 1 of 4</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-2-of-4">Col 2 of 4</div>
+    </div>
+
+    <div class="row">
+      <div class="col-1-of-4">Col 1 of 4</div>
+      <div class="col-3-of-4">Col 3 of 4</div>
+    </div>
+  </section>
+  ```
+
+  ```scss
+  .row {
+    max-width: $grid-width; // 1140px 보다 작은 경우 100%를 차지
+    background-color: #eee;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+      // 마지막 요소를 제외한 모든 row
+      margin-bottom: $gutter-vertical;
+    }
+
+    @include clearfix;
+
+    [class^="col-"] {
+      // 클래스 이름이 col-로 시작하는 경우
+      background-color: orangered;
+      float: left;
+      &:not(:last-child) {
+        margin-right: $gutter-horizontal;
+      }
+    }
+    .col-1-of-2 {
+      width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+      width: calc(
+        (100% - 2 * #{$gutter-horizontal}) / 3
+      ); // 사이 여백이 2개이므로 곱하기 2
+    }
+
+    .col-2-of-3 {
+      width: calc(
+        2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal}
+      ); // col-1-of-3 을 두개 곱한 후 horizontal을 하나 더하면 된다.
+    }
+
+    .col-1-of-4 {
+      width: calc(
+        (100% - 3 * #{$gutter-horizontal}) / 4
+      ); // 사이 여백이 3개이므로 곱하기 3
+    }
+
+    .col-2-of-4 {
+      width: calc(
+        2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal}
+      ); // col-1-of-4 을 두개 곱한 후 horizontal을 하나 더하면 된다.
+    }
+
+    .col-3-of-4 {
+      width: calc(
+        3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
+      ); // col-1-of-3 을 세개 곱한 후 horizontal를 두배한 값을 더하면 된다.
+    }
+  }
+  ```
+
+- css `calc`에서 sass 변수를 사용하려면 `#{$gutter-horizontal}` 형식으로 해야 사용 간으하다.
+- 그리드 시스템 구성 방법을 공부했고 이해했다. 현재는 하나하나 계산하여 그리드 시스템을 구축하지만 scss 함수를 이용하면 이를 자동화할 수 있다.
+- 요소 크기나 색상을 변수로 관리하는 경우 변화에 기민하게 대처할 수 있다.
+- 시맨틱 요소를 적절히 사용하기
+  - `main`
+  - `header`
+- Enmet
+  HTML을 편리하게 사용하기 위한 편리 기능
+- `-webkit-background-clip`
+  background-clip 속성은 요소의 배경이 테두리, 안쪽 여백, 콘텐츠 상자 중 어디까지 차지할 지 지정합니다.
+  현재 프로젝트에서 글자에 그라디에이션 효과를 주어야하는데. 글자에 `background-image: linear-gradient()` 주고 난 후에 그라디에이션(배경)이 텍스트 영역에만 보이게 하면 글자에 효과가 적용됩니다.
+- `transform: skewY()`는 기울기를 의미합니다.
+- `text-shadow` 텍스트에 그림자를 추가합니다.
+- 프로젝트에서 재사용할 유틸성 클래스를 많이 만들어서 재사용하라.
+
+  ```scss
+  .u-center-text {
+    // 텍스트 중앙 정렬
+    text-align: center;
+  }
+
+  .u-margin-bottom-8 {
+    margin-bottom: 8rem;
+  }
+  ```
+
+- `&rarr;` HTML에서 오른쪽 화살표 의미
+
 ## 2020.12.25
 
 - 대규모 CSS 시스템을 위한 SCSS 도입 및 아키텍처
