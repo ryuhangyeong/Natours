@@ -2,6 +2,16 @@
 
 ## 2020.12.27
 
+- 카드 뒤집기 효과 만들기
+
+  - `transform: rotateY()`
+  - `perspective`
+    원근감을 준다.
+  - `backface-visibility`
+    뒤집어진 뒷면이 보여질지 안보여질지를 결정한다.
+
+  카드 뒤집기 효과가 많은 속성의 응용이라 쉽게 이해가 되지 않는다. 대략적인 사용 용도는 파악했다.
+
 - BEM 활용하기
   - Block
   - Element
