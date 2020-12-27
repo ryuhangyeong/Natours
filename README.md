@@ -1,5 +1,19 @@
 # Natours
 
+## 2020.12.27
+
+- BEM 활용하기
+  - Block
+  - Element
+  - Modifier
+- 반응형 이미지
+  반응형 웹에서 이미지 처리는 매우 어렵습니다. 고정된 크기의 경우 스크롤이 생겨버리거든요. `%` 단위를 사용합시다.
+- outline, border를 테두리라고 한다면 outline은 border 바깥 외곽선을 말합니다.
+  - outline-offset, border와 outline 사이의 여백을 의미합니다.
+- linea 아이콘 사이트
+  - \_basic/\_ICONFONT/fonts, styles 복사해서 사용
+- `transform: skewY()`로 틀어진 내부 아이템을 `transform: skewY()` 반대 값을 주면 원래대로 돌아온다. 모든 값에 지정해주면 되지만 모든 아이템 하나하나마다 이를 지정하면 매우 비효율적일것이다. 그래서 `& > *` 선택자를 이용하자.
+
 ## 2020.12.26
 
 - 그리드 시스템 만들어보기
