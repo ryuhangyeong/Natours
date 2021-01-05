@@ -13,9 +13,4 @@
     width: 100%;
     object-fit: cover; // object-fit 속성은 대체되는 요소의 내용(<img>, <video>, <object>, <svg> 등과 같은)이 지정된 너비와 높이에 맞게 장착되는 방식을 지정한다.
   }
-
-  &__form {
-    width: 50%;
-    padding: 6rem;
-  }
 }
