@@ -1,5 +1,57 @@
 # Natours
 
+## 2021.01.10
+
+- 강력한 sass mixing을 사용하여 모든 미디어 쿼리를 작성하는 방법
+- @content 및 @if sass 지시문을 사용하는 방법
+- 반응 형 디자인을 위해 chrome devtools를 활용합니다.
+- 종단점
+
+  ```
+  0 - 600px: phone
+  600 - 900px: tablet portrait(세로)
+  900 - 1200px: tablet landscape(가로)
+  [1200 - 1800] is where our normal styles apply
+  1800px + : big desktop
+  ```
+
+  ```scss
+  /*
+  $breakpoint argument choices:
+  - phone
+  - tab-port
+  - tab-land
+  - big-desktop
+  */
+  @mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+      @media (max-width: 600px) {
+        @content;
+      }
+    }
+
+    @if $breakpoint == tab-port {
+      @media (max-width: 900px) {
+        @content;
+      }
+    }
+
+    @if $breakpoint == tab-land {
+      @media (max-width: 1200px) {
+        @content;
+      }
+    }
+
+    @if $breakpoint == big-desktop {
+      @media (min-width: 1800px) {
+        @content;
+      }
+    }
+  }
+  ```
+
+  해당 부분을 들으면서 기본적인 미디어 쿼리 사용법이나 `mixin` 만드는 것을 이해하는데는 큰 어려움이 없었지만 근본적으로 **치밀한 전략**이 필요한 부분이구나라는 생각이 들었다. 지금까지는 그냥 `px`로 각 각 종단점에 `px`을 설정해주었는데. 강좌에서는 그렇지 않더라. 실제 현업에서는 도대체 어떻게 하는지가 참 궁금하다. 나도 현업에 있지만 개발 환경이 그렇게 좋지 못하고 주변 개발자가 없기 때문에 주먹구구식으로 했다.이번 기회에서라도 **제대로** 이해 해봐야겠다.
+
 ## 2021.01.08
 
 - 반응형 전략은 현대 웹에서 매우 중요하다. 모바일 우선과 데스크톱 우선 전략이 있다.
