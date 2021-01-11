@@ -7,6 +7,13 @@
 }
 
 html {
+  /*
+    0 - 600px: phone
+    600 - 900px: tablet portrait
+    900 - 1200px: tablet landscape
+    [1200 - 1800] is where our normal styles apply
+    1800px + : big desktop
+  */
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 
   @include respond(tab-land) {
@@ -26,4 +33,9 @@ html {
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
 }

@@ -14,7 +14,13 @@
     시계 방향으로 4개의 점으로 생각하자.
     왼쪽/위, 오른쪽위, 오른쪽아래, 왼쪽아래
   */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
 
   &__logo {
     height: 3.5rem;

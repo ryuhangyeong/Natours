@@ -1,5 +1,43 @@
 # Natours
 
+## 2021.01.11
+
+- 앞서 우리가 작성한 `html` 부분의 font-size에 대한 미디어 쿼리에 대해 다시 한번 정리해봅시다.
+
+  ```scss
+  html {
+    font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+
+    @include respond(tab-land) {
+      // width < 1200?
+      font-size: 56.25%; // 1 rem = 9px, 9/16 = 50%
+    }
+
+    @include respond(tab-port) {
+      // width < 900?
+      font-size: 50%; // 1 rem = 8px, 8/16 = 50%
+    }
+    /*
+      0 - 600px: phone
+      600 - 900px: tablet portrait
+      900 - 1200px: tablet landscape
+      [1200 - 1800] is where our normal styles apply
+      1800px + : big desktop
+  
+      이해를 위해 다시 한번 살펴보자.
+      700px이라고 가정해보자. 그러면 tab-land와 tab-port 두 쿼리 모두 적용됩니다. 모두 적용되
+      므로 가장 마지막에 선언된 tab-port의 스타일이 적용될 것입니다.
+  
+      만약 tab-land와 tab-port의 순서를 반대로 했다면 tab-land의 font-size가 적용되어 레이아웃이
+      엉망이 되었을 것입니다.
+    */
+
+    @include respond(big-desktop) {
+      font-size: 75%; // 1 rem = 12px, 12/16 = 75%
+    }
+  }
+  ```
+
 ## 2021.01.10
 
 - 강력한 sass mixing을 사용하여 모든 미디어 쿼리를 작성하는 방법
