@@ -1,5 +1,50 @@
 # Natours
 
+## 2021.01.15
+
+- 반응 형 이미지의 목표는 작은 화면에 불필요한 큰 이미지를 다운로드하지 않도록 올바른 이미지를 올바른 화면 크기와 장치에 제공하는 것입니다.
+- 1MB 이미지가 있다고 가정하자. 데스크톱에서는 해당 이미지를 사용하는건 상관없지만 모바일에서 사용하는 경우 느리거나 빠른 데이터 소모를 초래할 수 있습니다.(그래서 데스크톱 이미지와 모바일용 이미지가 필요하다.)
+- 세 가지 사용 사례
+
+  - 해상도 전환
+    Large screen -> Small screen (작은 화면에서 이미지 해상도 감소)
+  - 밀도 전환
+    @2x screen (high-res) -> @1x screen (low-res)
+    @1x 화면에서 이미지 해상도의 절반
+  - 아트 방향
+    Large screen -> Small screen (작은 화면에서 다른 이미지)
+
+  이렇게 보았을 때는 잘 모르겠네.. 실제 예제를 보면서 이해해보자!
+
+- HTML의 반응형 이미지 - 아트 방향 및 밀도 전환
+
+  - 밀도 설명자와 함께 <img> 및 <source> 요소의 srcset 속성에 대한 방법
+
+  ```scss
+  <footer class="footer">
+    <div class="footer__logo-box">
+      <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo">
+    </div>
+  </footer>
+  ```
+
+  https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/
+
+  - 아트 디렉션에 <picture> 요소를 사용하는 방법과 이유
+
+  ```scss
+  <footer class="footer">
+  		<div class="footer__logo-box">
+  			<picture>
+  				<source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+  				<img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo">
+  			</picture>
+      </div>
+  </footer>
+  ```
+
+  - HTML로 미디어 쿼리를 작성하는 방법.
+
 ## 2021.01.14
 
 - `tous, story, book` 영역 반응형 지원 완료
