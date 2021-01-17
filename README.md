@@ -1,5 +1,51 @@
 # Natours
 
+## 2021.01.17
+
+- 반응형 이미지를 설정할 때 `srcset`과 `sizes`를 사용하자.
+- `srcset`를 사용하는 경우 `srcset` 속성을 지원하지 않는 브라우저가 있을 수 있으므로 가장 마지막에 `src` 속성을 준다.
+- https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/
+- 고밀도 디스플레이를 위한 이미지
+  `@media (min-resolution: 192dpi) and (min-width: 600px) {}`
+- `@supports`
+  주어진 하나 이상의 CSS 기능을 웹브라우저가 지원하는 지에 따른 스타일 선언을 할 수 있도록 해준다. 이것을 기능 쿼리(feature query)라고 부른다.
+- 이번 강의에서 배운 것 크로스 브라우징은 정말로 고통스러운 것
+- 빌드 프로세스
+
+  ```json
+  "scripts": {
+    "watch:sass": "node-sass scss/main.scss css/style.css -w",
+
+    "compile:sass": "node-sass scss/main.scss css/style.comp.css",
+    "concat:css": "concat -o css/style.concat.css css/icon-font.css css/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 version' css/style.concat.css -o css/style.prefix.css",
+    "compress:css": "node-sass css/style.prefix.css css/style.min.css --output-style compressed",
+    "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"
+  },
+  ```
+
+  sass로 css를 컴파일하고 기존 css 라이브러리와 컴파일한 css를 합치고(concat) 그리고 css에 prefix를 붙여 구형 브라우저에서도 새로운 css 기능을 사용할 수 있도록 하며 css 크기를 압축한다. 이 과정을 하나하나 해주기보단 `script`를 작성하여 한번의 명령어로 수행할 수 있도록 `npm-run-all`을 설치했다. `--parallel` 플래그를 이용하면 병렬적으로 실행시킬 수 있다.
+
+- 텍스트를 드래그 혹은 선택했을 때의 색상 변경
+
+```scss
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
+```
+
+- 미디어쿼리를 설정할 때 `@media only screen and (max-width) {}`로 한다.
+  `only screen`을 설정한 이유는 프린트 모드에서는 미디어 쿼리에 해당하는 스타일이 적용 안되게 하기 위해서다.
+
+- 카드 레이아웃에 대해서
+  카드 레이아웃에서 카드 뒤집기 효과를 개발했다. 매우 신기하다! 그런데 문제점이 있는데 큰 화면에서 작은 화면으로 갈때 알아서 뒤집히는? 버그가 있다. 이 버그를 해결하려면 아래처럼 변경하자.
+
+  ```scss
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  }
+  ```
+
 ## 2021.01.15
 
 - 반응 형 이미지의 목표는 작은 화면에 불필요한 큰 이미지를 다운로드하지 않도록 올바른 이미지를 올바른 화면 크기와 장치에 제공하는 것입니다.
